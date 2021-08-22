@@ -1,0 +1,131 @@
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  font-family: "Open Sans";
+  background-color: #f8efdb;
+}
+body p {
+  font-size: 12px;
+}
+
+.bx {
+  font-size: 50px;
+  color: black;
+  float: left;
+  margin: 10px;
+}
+.bx:hover {
+  color: #e7b64d;
+}
+
+button {
+  border: none;
+  border-radius: 0;
+  outline: 0;
+  cursor: pointer;
+  background: transparent;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+main {
+  display: flex;
+}
+
+header {
+  background-color: #e7b64d;
+  border-bottom: 1px solid #aaa;
+  display: flex;
+}
+header .btn {
+  padding: 5px 10px;
+  background: #f3d083;
+  border-radius: 30%;
+  margin: 5px 0 5px 5px;
+  font-size: 12px;
+  cursor: pointer;
+}
+header input {
+  width: calc(30% - 5px);
+  margin: 5px 0 5px 5px;
+  padding-left: 5px;
+  box-shadow: none;
+  outline: none;
+  border: none;
+}
+.sidebar {
+  width: 30%;
+  border-right: 1px solid #aaa;
+  max-height: calc(100vh - 35px);
+  overflow: scroll;
+}
+.sidebar .list-of-notes {
+  margin: 0;
+  padding: 0;
+}
+.sidebar .note {
+  border-bottom: 1px solid #aaa;
+  position: relative;
+  display: flex;
+  align-items: stretch;
+  height: 60px;
+}
+.sidebar .note.selected {
+  background: rgb(255, 239, 166);
+}
+.sidebar .note .note-left {
+  flex: 1;
+  padding: 10px;
+  cursor: pointer;
+}
+.sidebar .note .note-left p {
+  margin: 0;
+}
+.sidebar .note:hover .delete {
+  pointer-events: all;
+  width: 30px;
+}
+.sidebar .note:hover .delete i {
+  font-size: 12px;
+}
+.sidebar .note .delete {
+  pointer-events: none;
+  transition: all 0.2s ease;
+  width: 0px;
+  padding: 0;
+  height: 100%;
+  background: #f3e2bd;
+}
+.sidebar .note .delete i {
+  font-size: 0;
+}
+
+.editor {
+  width: 70%;
+}
+.editor.editor-empty {
+  height: calc(100vh - 40px);
+}
+
+.ql-editor {
+  height: calc(100vh - 80px);
+}
+.ql-editor ol,
+.ql-editor ul {
+  font-size: 12px;
+}
+
+.ql-container.ql-snow {
+  border: none;
+}
+
+.ql-toolbar.ql-snow {
+  border: none;
+}

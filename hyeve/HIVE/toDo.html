@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>ToDo</title>
+  <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+<link rel="stylesheet" href="./toDo.css">
+
+</head>
+<body>
+    <div class="back">
+        <a href="index.html">
+        <i class='bx bx-x-circle' ></i>
+        </a>
+      </div>
+
+<link href="https://fonts.googleapis.com/css?family=Comfortaa|Open+Sans" rel="stylesheet">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+<div v-cloak id="app">    
+    <div class="abs-center container">     
+        <div :class="['view-shift', 'view'+current_view]">
+            <div class="view list-view">
+                <div class="button right" @click="list_entry = true">
+                    <i class="material-icons abs-center">add</i>
+                </div>
+                <div class="rela-block header">
+                    <div class="abs-center header-title">Things To-Do!</div>
+                </div>
+                <div class="rela-block item-container list-container">
+                    <div v-if="lists.length === 0" class="horz-center lite" style="top: 28px">No lists yet!</div>
+                    <div v-else class="horz-center lite" style="top: 28px">Select a list</div>
+                    <div v-for="list,index in lists" :class="['rela-inline', 'list']" 
+                         @click="if(!list_entry){current_list=index; current_view = 2; snackbar_active = false;}" :key="index">
+                        <div class="list-title">{{list.title}}</div>
+                        <i class="material-icons item-remove list-remove" @click.stop="remove_list_snack(index)">clear</i>
+                    </div>
+                </div>
+                <div :class="['horz-center', 'list-input', list_entry?'active':'']">
+                    <input type="text" class="input" placeholder="Enter List Title" v-model="new_list" @keypress.enter="add_list()"/>
+                    <i class="vert-center material-icons item-icon" @click="list_entry = false; new_list = '';">clear</i>
+                </div>
+            </div>
+            <div class="view task-view">
+                <div class="rela-block header">
+                    <div class="list-header">{{(lists[current_list])?(lists[current_list].title):('placeholder')}}</div>
+                </div>
+                <div class="button right" @click="current_view = 3;">
+                    <i class="material-icons abs-center">add</i>
+                </div>
+                <div class="button left" @click="current_view = 1;">
+                    <i class="material-icons abs-center">navigate_before</i>
+                </div>
+                <div v-if="lists[current_list]" class="rela-block item-container task-container">
+                    <div v-if="!num_tasks" class="lite" style="text-align: center">No Tasks :(</div>
+                    <div v-for="task,index in lists[current_list].tasks" :class="['rela-block', 'task', task.complete?'complete':'', task.deleted?'left':'']" :key="index">
+                        <i class="vert-center material-icons item-icon item-checkbox" v-show="!task.complete" 
+                           @click.stop="task.complete = !task.complete">check_box_outline_blank</i>
+                        <i class="vert-center material-icons item-icon item-checkbox" v-show="task.complete" 
+                           @click.stop="task.complete = !task.complete">check_box</i>
+                        <i class="vert-center material-icons item-icon item-remove task-remove" @click="remove_task(index); snack_view = 1;">clear</i>
+                        <div class="rela-inline item-text">{{task.title}}</div>
+                    </div>
+                </div>
+            </div>
+            <div class="view entry-view">
+                <div class="button left" @click="current_view = 2; reset_variables();">
+                    <i class="material-icons abs-center">navigate_before</i>
+                </div>
+                <input type="text" placeholder="Add Task Title" class="rela-block input entry-field title-input" v-model="new_title" />
+                <textarea type="text" placeholder="Task Description (optional)" class="rela-block input entry-field desc-input" 
+                          v-model="new_desc" rows="8"></textarea>
+                <div v-show="cost_entry" class="rela-inline entry-box">
+                    <span class="rela-inline">$ </span>
+                    <input type="text" class="rela-inline input entry-field cost-input" v-model="new_cost" />
+                </div>
+                <div v-show="time_entry" class="rela-inline entry-box">
+                    <input type="text" placeholder="Enter time" class="rela-inline input entry-field time-input" v-model="new_time" />
+                </div>
+                <div class="entry-option-container">
+                    <div class="rela-inline entry-option right" @click="add_task()"><i class="material-icons">done</i></div>
+                    <div class="rela-inline entry-option" @click="time_entry = !time_entry"><i class="material-icons">schedule</i></div>
+                    <div class="rela-inline entry-option" @click="cost_entry = !cost_entry"><i class="material-icons">attach_money</i></div>
+                </div>
+            </div>
+        </div>
+        <div :class="['snack-bar', snackbar_active?'active':'']">
+            <div v-show="!snack_view" class="snack-content list-remove">
+                <div class="rela-inline snack-bar-text">Remove list?</div>
+                <div class="rela-inline action" @click="snackbar_active = false">CANCEL</div>
+                <div class="rela-inline action yellow" @click="remove_list()">OK</div>
+            </div>
+            <div v-show="snack_view" class="snack-content task-remove">
+                <div class="rela-inline snack-bar-text">Task Removed</div>
+                <div class="rela-inline action yellow" @click="undo_remove_task()">UNDO</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.1.10/vue.min.js'></script><script  src="./toDo.js"></script>
+
+</body>
+</html>

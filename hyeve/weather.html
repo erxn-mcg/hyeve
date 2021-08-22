@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    <title>Weather</title>
+    <link rel="stylesheet" href="weather.css">
+</head>
+<body>
+    <div class="back">
+        <a href="index.html">
+        <i class='bx bx-x-circle' ></i>
+        </a>
+      </div>
+    <div class="main-container">
+        <div class="container top">
+            <h1>Weather</h1>
+            <form action="" onsubmit="return false">
+                <input type="text" class="search" placeholder="Search by city name">
+                <button type="submit" class="btn">Submit</button>
+                <p class="error"></p>
+            </form>
+            <section>
+                <div class="container">
+                    <div class="icon">
+                        <img src="" alt="" class="weather-icon">
+                    </div>
+                    <div class="location">
+                        <div class="city">Manchester, UK</div>
+                        <div class="date">Wednesday, Aug 4 2021</div>
+                    </div>
+                    <div class="current">
+                        <div class="temp">Temp: 20 <span>°C</span></div>
+                        <div class="weather">Weather: Sunny</div>
+                        <div class="temp-range">Temp Range: 15°C / 22°C</div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+    
+
+    <script src="weather.js"></script>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="sstyle.css" />
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    <title>Meditator</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  </head>
+  <header>
+    <div class="back">
+      <a href="index.html">
+      <i class='bx bx-x-circle' ></i>
+      </a>
+    </div>
+  </header>
+  <body>
+    <div class="input">
+      <label>Select Breaths <i class="fa fa-chevron-circle-down"></i></label>
+      <select class="breath-input">
+        <option value="3">3 Breaths</option>
+        <option value="5">5 Breaths</option>
+        <option value="7">7 Breaths</option>
+      </select>
+    </div>
+    <div class="circle-wrap">
+      <div class="circle-outline"></div>
+      <div class="circle-progress"></div>
+    </div>
+    <p class="breaths">Breaths remaining: <span class="breaths-text">3</span></p>
+    <p class="instructions">Ready to start your breathing?</p>
+    <button class="start">Start</button>
+    <script src="sscript.js"></script>
+  </body>
+</html>
